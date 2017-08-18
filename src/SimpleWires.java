@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class SimpleWires {
+    private Bomb bomb;
     private ArrayList<String> wires = new ArrayList<>();
     private int wireCount = 0;
     private int redCount = 0;
@@ -9,9 +10,9 @@ public class SimpleWires {
     private int whiteCount = 0;
     private int blackCount = 0;
     private String lastWire = "";
-    private int lastSerialDigit = 0;
     
-    public SimpleWires(String wires, String serial) {
+    public SimpleWires(Bomb bomb, String wires) {
+        this.bomb = bomb;
         wires = wires.trim().toUpperCase();
         wireCount = wires.length();
         for (String s : wires.split("")) {
@@ -29,10 +30,9 @@ public class SimpleWires {
             }
         }
         lastWire = this.wires.get(wires.length() - 1);
-        lastSerialDigit = Integer.parseInt(serial.substring(serial.length() - 1));
     }
     
-    public int solve() {
+    public String solve() {
         int solution = 0;
         if (wireCount == 3) {
             if (redCount == 0) {
@@ -45,7 +45,7 @@ public class SimpleWires {
                 solution = 3;
             }
         } else if (wireCount == 4) {
-            if (redCount > 1 && lastSerialDigit % 2 != 0) {
+            if (redCount > 1 && bomb.lastSerialDigitIsOdd()) {
                 solution = wires.lastIndexOf("R") + 1;
             } else if (lastWire.equals("Y") && redCount == 0) {
                 solution = 1;
@@ -57,7 +57,7 @@ public class SimpleWires {
                 solution = 2;
             }
         } else if (wireCount == 5) {
-            if (lastWire.equals("K") && lastSerialDigit % 2 != 0) {
+            if (lastWire.equals("K") && bomb.lastSerialDigitIsOdd()) {
                 solution = 4;
             } else if (redCount == 1 && yellowCount > 1) {
                 solution = 1;
@@ -67,7 +67,7 @@ public class SimpleWires {
                 solution = 1;
             }
         } else if (wireCount == 6) {
-            if (yellowCount == 0 && lastSerialDigit % 2 != 0) {
+            if (yellowCount == 0 && bomb.lastSerialDigitIsOdd()) {
                 solution = 3;
             } else if (yellowCount == 1 && whiteCount > 1) {
                 solution = 4;
@@ -77,6 +77,6 @@ public class SimpleWires {
                 solution = 4;
             }
         }
-        return solution;
+        return "CUT WIRE " + solution;
     }
 }

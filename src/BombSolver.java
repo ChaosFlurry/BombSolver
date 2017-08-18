@@ -5,14 +5,14 @@ public class BombSolver {
         while (true) {
             System.out.println("Module: ");
             String input = Input.getInput();
-            if (input.equals("s wires") || input.equals("simple wires")) {
+            if (input.equals("sw") || input.equals("simple wires")) {
                 System.out.println("");
                 System.out.println("Simple Wires");
                 System.out.println("Wires: ");
                 String wires = Input.getInput();
                 System.out.println("Last Digit Serial: ");
                 String serial = Input.getInput();
-                SimpleWires sw = new SimpleWires(wires, serial);
+                SimpleWires sw = new SimpleWires();
                 System.out.println("");
                 System.out.println("Cut " + sw.solve());
             } else if (input.equals("pw") || input.equals("password")) {

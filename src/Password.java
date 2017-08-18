@@ -9,7 +9,8 @@ public class Password {
 			"plant", "point", "right", "small", "sound",
 			"spell", "still", "study", "their", "there",
 			"these", "thing", "think", "three", "water",
-			"where", "which", "world", "would", "write"};
+			"where", "which", "world", "would", "write"
+	};
 	private ArrayList<String> letters = new ArrayList<>();
 	
 	public Password(String letters) {
@@ -25,7 +26,7 @@ public class Password {
 			for (String letter : letters.get(i).split("")) {
 				for (String answer : reducedAnswerList) {
 					if (answer.substring(i, i + 1).toUpperCase().equals(letter)) {
-						answerShortlist.add(answer);
+						answerShortlist.add(answer.toUpperCase());
 					}
 				}
 			}
