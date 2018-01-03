@@ -61,15 +61,23 @@ public class BombSolver {
 			    	System.out.println(result);
 			    }
 		    } else if (command.equals("cw")) {
+    			System.out.println("Wire:");
     			String wire = Input.getInput(delimiter).trim().toUpperCase();
-    			String result = new ComplicatedWires(bomb, wire).solve();
-    			System.out.println(result);
+    			while (!wire.equals("DONE")) {
+				    String result = new ComplicatedWires(bomb, wire).solve();
+    			    System.out.println(result);
+    			    wire = Input.getInput(delimiter).trim().toUpperCase();
+			    }
+
 		    } else if (command.equals("ws")) {
     			int redCount = 0;
     			int blueCount = 0;
     			int blackCount = 0;
     			int currentOccurrence;
+    			
+    			System.out.println("Wire:");
 			    String input = Input.getInput(delimiter).trim().toUpperCase();
+			    System.out.println(input);
     			while (!input.equals("DONE")) {
     				if (!input.matches("[RBK][ABC]")) {
     					System.out.println("Invalid wire-letter combination.");
@@ -90,6 +98,7 @@ public class BombSolver {
     				String letter = Character.toString(input.charAt(1));
 				    String result = new WireSequence(bomb, color, letter, currentOccurrence).solve();
 				    System.out.println(result);
+				    input = Input.getInput(delimiter).trim().toUpperCase();
 			    }
     			
 		    } else if (command.equals("maze")) {
@@ -126,7 +135,8 @@ public class BombSolver {
             System.out.println("Invalid indicator(s).");
             input = Input.getInput(delimiter).trim().toUpperCase();
 	    }
-	    ArrayList<String> indicators = new ArrayList<>(Arrays.asList(input.split(" ")));
+	    ArrayList<String> indicators = new ArrayList<>();
+	    indicators.addAll(Arrays.asList(input.split(" ")));
         
         System.out.println("Number of batteries:");
         input = Input.getInput(delimiter).trim();
@@ -142,10 +152,7 @@ public class BombSolver {
             System.out.println("Invalid response.");
             input = Input.getInput(delimiter).trim().toLowerCase();
 	    }
-	    boolean parallelPort = false;
-	    if (input.matches("yes|y|true")) {
-            parallelPort = true;
-	    }
+	    boolean parallelPort = input.matches("yes|y|true");
 	    
 	    System.out.println("Number of strikes:");
 	    input = Input.getInput(delimiter).trim();
