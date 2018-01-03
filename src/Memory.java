@@ -10,9 +10,10 @@ public class Memory {
 		this.numbers = Arrays.asList(numbers.split(" "));
 	}
 	
+	// TODO fix recursion bugs
 	public String solve() {
 		int stage = numbers.size();
-		int display = numbers.get(stage - 1).charAt(0);
+		int display = Integer.parseInt(Character.toString(numbers.get(stage - 1).charAt(0)));
 		
 		if (stage == 1) {
 			if (display == 1) {
@@ -31,7 +32,11 @@ public class Memory {
 				return "4";
 			} else if (display == 2) {
 				int prerequisiteStage = 1;
-				String prerequisiteNumbers = numbers.subList(0, prerequisiteStage + 1).toString();
+				String prerequisiteNumbers = "";
+				for (int i = 0; i < prerequisiteStage; i++) {
+					prerequisiteNumbers += " " + numbers.get(i);
+					prerequisiteNumbers = prerequisiteNumbers.trim();
+				}
 				String prerequisiteLabel = new Memory(bomb, prerequisiteNumbers).solve();
 				int prerequisitePosition = numbers.get(prerequisiteStage - 1).lastIndexOf(prerequisiteLabel);
 				return String.valueOf(numbers.get(stage - 1).charAt(prerequisitePosition));
@@ -39,7 +44,11 @@ public class Memory {
 				return String.valueOf(numbers.get(stage - 1).charAt(1));
 			} else if (display == 4) {
 				int prerequisiteStage = 1;
-				String prerequisiteNumbers = numbers.subList(0, prerequisiteStage + 1).toString();
+				String prerequisiteNumbers = "";
+				for (int i = 0; i < prerequisiteStage; i++) {
+					prerequisiteNumbers += " " + numbers.get(i);
+					prerequisiteNumbers = prerequisiteNumbers.trim();
+				}
 				String prerequisiteLabel = new Memory(bomb, prerequisiteNumbers).solve();
 				int prerequisitePosition = numbers.get(prerequisiteStage - 1).lastIndexOf(prerequisiteLabel);
 				return String.valueOf(numbers.get(stage - 1).charAt(prerequisitePosition));
@@ -49,11 +58,19 @@ public class Memory {
 		} else if (stage == 3) {
 			if (display == 1) {
 				int prerequisiteStage = 2;
-				String prerequisiteNumbers = numbers.subList(0, prerequisiteStage + 1).toString();
+				String prerequisiteNumbers = "";
+				for (int i = 0; i < prerequisiteStage; i++) {
+					prerequisiteNumbers += " " + numbers.get(i);
+					prerequisiteNumbers = prerequisiteNumbers.trim();
+				}
 				return new Memory(bomb, prerequisiteNumbers).solve();
 			} else if (display == 2) {
 				int prerequisiteStage = 1;
-				String prerequisiteNumbers = numbers.subList(0, prerequisiteStage + 1).toString();
+				String prerequisiteNumbers = "";
+				for (int i = 0; i < prerequisiteStage; i++) {
+					prerequisiteNumbers += " " + numbers.get(i);
+					prerequisiteNumbers = prerequisiteNumbers.trim();
+				}
 				return new Memory(bomb, prerequisiteNumbers).solve();
 			} else if (display == 3) {
 				return String.valueOf(numbers.get(stage - 1).charAt(3));
@@ -63,9 +80,14 @@ public class Memory {
 				return "Invalid Number Sequence";
 			}
 		} else if (stage == 4) {
+			// 42143 31324 12314 12324
 			if (display == 1) {
 				int prerequisiteStage = 1;
-				String prerequisiteNumbers = numbers.subList(0, prerequisiteStage + 1).toString();
+				String prerequisiteNumbers = "";
+				for (int i = 0; i < prerequisiteStage; i++) {
+					prerequisiteNumbers += " " + numbers.get(i);
+					prerequisiteNumbers = prerequisiteNumbers.trim();
+				}
 				String prerequisiteLabel = new Memory(bomb, prerequisiteNumbers).solve();
 				int prerequisitePosition = numbers.get(prerequisiteStage - 1).lastIndexOf(prerequisiteLabel);
 				return String.valueOf(numbers.get(stage - 1).charAt(prerequisitePosition));
@@ -73,35 +95,61 @@ public class Memory {
 				return String.valueOf(numbers.get(stage - 1).charAt(1));
 			} else if (display == 3) {
 				int prerequisiteStage = 2;
-				String prerequisiteNumbers = numbers.subList(0, prerequisiteStage + 1).toString();
+				String prerequisiteNumbers = "";
+				for (int i = 0; i < prerequisiteStage; i++) {
+					prerequisiteNumbers += " " + numbers.get(i);
+					prerequisiteNumbers = prerequisiteNumbers.trim();
+				}
 				String prerequisiteLabel = new Memory(bomb, prerequisiteNumbers).solve();
 				int prerequisitePosition = numbers.get(prerequisiteStage - 1).lastIndexOf(prerequisiteLabel);
 				return String.valueOf(numbers.get(stage - 1).charAt(prerequisitePosition));
 			} else if (display == 4) {
 				int prerequisiteStage = 2;
-				String prerequisiteNumbers = numbers.subList(0, prerequisiteStage + 1).toString();
+				String prerequisiteNumbers = "";
+				for (int i = 0; i < prerequisiteStage; i++) {
+					prerequisiteNumbers += " " + numbers.get(i);
+					prerequisiteNumbers = prerequisiteNumbers.trim();
+				}
 				String prerequisiteLabel = new Memory(bomb, prerequisiteNumbers).solve();
 				int prerequisitePosition = numbers.get(prerequisiteStage - 1).lastIndexOf(prerequisiteLabel);
 				return String.valueOf(numbers.get(stage - 1).charAt(prerequisitePosition));
 			} else {
 				return "Invalid Number Sequence";
 			}
+			// 42341 12134 13412 41423
+			// 14132 24321 23412 34231
 		} else if (stage == 5) {
 			if (display == 1) {
 				int prerequisiteStage = 1;
-				String prerequisiteNumbers = numbers.subList(0, prerequisiteStage + 1).toString();
+				String prerequisiteNumbers = "";
+				for (int i = 0; i < prerequisiteStage; i++) {
+					prerequisiteNumbers += " " + numbers.get(i);
+					prerequisiteNumbers = prerequisiteNumbers.trim();
+				}
 				return new Memory(bomb, prerequisiteNumbers).solve();
 			} else if (display == 2) {
 				int prerequisiteStage = 2;
-				String prerequisiteNumbers = numbers.subList(0, prerequisiteStage + 1).toString();
+				String prerequisiteNumbers = "";
+				for (int i = 0; i < prerequisiteStage; i++) {
+					prerequisiteNumbers += " " + numbers.get(i);
+					prerequisiteNumbers = prerequisiteNumbers.trim();
+				}
 				return new Memory(bomb, prerequisiteNumbers).solve();
 			} else if (display == 3) {
 				int prerequisiteStage = 4;
-				String prerequisiteNumbers = numbers.subList(0, prerequisiteStage + 1).toString();
+				String prerequisiteNumbers = "";
+				for (int i = 0; i < prerequisiteStage; i++) {
+					prerequisiteNumbers += " " + numbers.get(i);
+					prerequisiteNumbers = prerequisiteNumbers.trim();
+				}
 				return new Memory(bomb, prerequisiteNumbers).solve();
 			} else if (display == 4) {
 				int prerequisiteStage = 3;
-				String prerequisiteNumbers = numbers.subList(0, prerequisiteStage + 1).toString();
+				String prerequisiteNumbers = "";
+				for (int i = 0; i < prerequisiteStage; i++) {
+					prerequisiteNumbers += " " + numbers.get(i);
+					prerequisiteNumbers = prerequisiteNumbers.trim();
+				}
 				return new Memory(bomb, prerequisiteNumbers).solve();
 			} else {
 				return "Invalid Number Sequence";

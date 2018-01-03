@@ -7,11 +7,11 @@ public class Bomb {
 	private boolean hasParallelPort;
 	private int strikes;
 	
-	// Detailed Bomb Constructor
 	public Bomb(String serial, ArrayList<String> indicators, int batteryCount, boolean hasParallelPort, int strikes) {
 		this.serial = serial.trim().toUpperCase();
 		
 		// Removes duplicate indicators
+		indicators = new ArrayList<>();
 		for (String indicator : indicators) {
 			if (!this.indicators.contains(indicator)) {
 				this.indicators.add(indicator.trim().toUpperCase());
@@ -22,9 +22,8 @@ public class Bomb {
 		this.strikes = strikes;
 	}
 	
-	// Typical Bomb Constructor
-	public Bomb(String serial, ArrayList<String> indicators, int batteryCount) {
-		this(serial, indicators, batteryCount, false, 0);
+	public static boolean isValidSerial(String serial) {
+		return serial.trim().matches("\\w*\\d");
 	}
 	
 	public boolean serialContainsVowel() {
@@ -39,10 +38,7 @@ public class Bomb {
 	
 	public boolean lastSerialDigitIsEven() {
 		int serialLastDigit = Integer.parseInt(String.valueOf(serial.charAt(serial.length() - 1)));
-		if (serialLastDigit % 2 == 0) {
-			return true;
-		}
-		return false;
+		return serialLastDigit % 2 == 0;
 	}
 	
 	public boolean lastSerialDigitIsOdd() {

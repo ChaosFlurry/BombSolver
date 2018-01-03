@@ -13,4 +13,9 @@ public class Input {
 		}
 		return input;
 	}
+	
+	public static String getInput(String delimiter) {
+		System.out.print(delimiter);
+		return getInput();
+	}
 }

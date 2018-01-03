@@ -13,7 +13,7 @@ public class Password {
 	};
 	private ArrayList<String> letters = new ArrayList<>();
 	
-	public Password(String letters) {
+	public Password(Bomb bomb, String letters) {
 		letters = letters.trim().toUpperCase();
 		this.letters.addAll(Arrays.asList(letters.split(" ")));
 	}
