@@ -112,7 +112,14 @@ public class BombSolver {
 			    	System.out.println(result);
 			    }
 		    } else if (command.equals("knob")) {
-    			
+    			System.out.println("State:");
+    			String state = Input.getInput(delimiter).trim();
+    			if (!state.matches("[01]{6} [01]{6}")) {
+    				System.out.println("Invalid state format.");
+    				continue;
+			    }
+			    String result = new Knob(bomb, state).solve();
+    			System.out.println(result);
 		    }
 	    }
     }
